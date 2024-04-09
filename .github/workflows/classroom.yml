@@ -1,0 +1,138 @@
+name: Autograding Tests
+'on':
+- push
+- workflow_dispatch
+- repository_dispatch
+permissions:
+  checks: write
+  actions: read
+  contents: read
+jobs:
+  run-autograding-tests:
+    runs-on: ubuntu-latest
+    if: github.actor != 'github-classroom[bot]'
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    - name: Func.existsFuncionario
+      id: func-existsfuncionario
+      uses: education/autograding-command-grader@v1
+      with:
+        test-name: Func.existsFuncionario
+        setup-command: ''
+        command: gradle test --tests br.ufrn.imd.FuncionarioTest.existsFuncionario
+        timeout: 1
+    - name: Func.existsAttrInFuncionario
+      id: func-existsattrinfuncionario
+      uses: education/autograding-command-grader@v1
+      with:
+        test-name: Func.existsAttrInFuncionario
+        setup-command: ''
+        command: gradle test --tests br.ufrn.imd.FuncionarioTest.existsAttrInFuncionario
+        timeout: 10
+    - name: Func.existsMethodInFuncionario
+      id: func-existsmethodinfuncionario
+      uses: education/autograding-command-grader@v1
+      with:
+        test-name: Func.existsMethodInFuncionario
+        setup-command: ''
+        command: gradle test --tests br.ufrn.imd.FuncionarioTest.existsMethodInFuncionario
+        timeout: 1
+    - name: Func.existsConstructorInFuncionario
+      id: func-existsconstructorinfuncionario
+      uses: education/autograding-command-grader@v1
+      with:
+        test-name: Func.existsConstructorInFuncionario
+        setup-command: ''
+        command: gradle test --tests br.ufrn.imd.FuncionarioTest.existsConstructorInFuncionario
+        timeout: 1
+    - name: Func.assertCalculation
+      id: func-assertcalculation
+      uses: education/autograding-command-grader@v1
+      with:
+        test-name: Func.assertCalculation
+        setup-command: ''
+        command: gradle test --tests br.ufrn.imd.FuncionarioTest.assertCalculation
+        timeout: 10
+    - name: GerenteTest.existsGerente
+      id: gerentetest-existsgerente
+      uses: education/autograding-command-grader@v1
+      with:
+        test-name: GerenteTest.existsGerente
+        setup-command: ''
+        command: gradle test --tests br.ufrn.imd.GerenteTest.existsGerente
+        timeout: 1
+    - name: GerenteTest.existsAttrInGerente
+      id: gerentetest-existsattringerente
+      uses: education/autograding-command-grader@v1
+      with:
+        test-name: GerenteTest.existsAttrInGerente
+        setup-command: ''
+        command: gradle test --tests br.ufrn.imd.GerenteTest.existsAttrInGerente
+        timeout: 1
+    - name: GerenteTest.existsEnumInGerente
+      id: gerentetest-existsenumingerente
+      uses: education/autograding-command-grader@v1
+      with:
+        test-name: GerenteTest.existsEnumInGerente
+        setup-command: ''
+        command: gradle test --tests br.ufrn.imd.GerenteTest.existsEnumInGerente
+        timeout: 1
+    - name: GerenteTest.existsMethodInGerente
+      id: gerentetest-existsmethodingerente
+      uses: education/autograding-command-grader@v1
+      with:
+        test-name: GerenteTest.existsMethodInGerente
+        setup-command: ''
+        command: gradle test --tests br.ufrn.imd.GerenteTest.existsMethodInGerente
+        timeout: 1
+    - name: GerenteTest.assertCalculationJunior
+      id: gerentetest-assertcalculationjunior
+      uses: education/autograding-command-grader@v1
+      with:
+        test-name: GerenteTest.assertCalculationJunior
+        setup-command: ''
+        command: gradle test --tests br.ufrn.imd.GerenteTest.assertCalculationJunior
+        timeout: 1
+    - name: GerenteTest.assertCalculationPleno
+      id: gerentetest-assertcalculationpleno
+      uses: education/autograding-command-grader@v1
+      with:
+        test-name: GerenteTest.assertCalculationPleno
+        setup-command: ''
+        command: gradle test --tests br.ufrn.imd.GerenteTest.gradle test --tests br.ufrn.imd.GerenteTest.assertCalculationPleno
+        timeout: 10
+    - name: GerenteTest.assertCalculationSenior
+      id: gerentetest-assertcalculationsenior
+      uses: education/autograding-command-grader@v1
+      with:
+        test-name: GerenteTest.assertCalculationSenior
+        setup-command: ''
+        command: gradle test --tests br.ufrn.imd.GerenteTest.gradle test --tests br.ufrn.imd.GerenteTest.assertCalculationSenior
+        timeout: 1
+    - name: GerenteTest.existsConstructorInGerente
+      id: gerentetest-existsconstructoringerente
+      uses: education/autograding-command-grader@v1
+      with:
+        test-name: GerenteTest.existsConstructorInGerente
+        setup-command: ''
+        command: gradle test --tests br.ufrn.imd.GerenteTest.gradle test --tests br.ufrn.imd.GerenteTest.existsConstructorInGerente
+        timeout: 10
+    - name: Autograding Reporter
+      uses: education/autograding-grading-reporter@v1
+      env:
+        FUNC-EXISTSFUNCIONARIO_RESULTS: "${{steps.func-existsfuncionario.outputs.result}}"
+        FUNC-EXISTSATTRINFUNCIONARIO_RESULTS: "${{steps.func-existsattrinfuncionario.outputs.result}}"
+        FUNC-EXISTSMETHODINFUNCIONARIO_RESULTS: "${{steps.func-existsmethodinfuncionario.outputs.result}}"
+        FUNC-EXISTSCONSTRUCTORINFUNCIONARIO_RESULTS: "${{steps.func-existsconstructorinfuncionario.outputs.result}}"
+        FUNC-ASSERTCALCULATION_RESULTS: "${{steps.func-assertcalculation.outputs.result}}"
+        GERENTETEST-EXISTSGERENTE_RESULTS: "${{steps.gerentetest-existsgerente.outputs.result}}"
+        GERENTETEST-EXISTSATTRINGERENTE_RESULTS: "${{steps.gerentetest-existsattringerente.outputs.result}}"
+        GERENTETEST-EXISTSENUMINGERENTE_RESULTS: "${{steps.gerentetest-existsenumingerente.outputs.result}}"
+        GERENTETEST-EXISTSMETHODINGERENTE_RESULTS: "${{steps.gerentetest-existsmethodingerente.outputs.result}}"
+        GERENTETEST-ASSERTCALCULATIONJUNIOR_RESULTS: "${{steps.gerentetest-assertcalculationjunior.outputs.result}}"
+        GERENTETEST-ASSERTCALCULATIONPLENO_RESULTS: "${{steps.gerentetest-assertcalculationpleno.outputs.result}}"
+        GERENTETEST-ASSERTCALCULATIONSENIOR_RESULTS: "${{steps.gerentetest-assertcalculationsenior.outputs.result}}"
+        GERENTETEST-EXISTSCONSTRUCTORINGERENTE_RESULTS: "${{steps.gerentetest-existsconstructoringerente.outputs.result}}"
+      with:
+        runners: func-existsfuncionario,func-existsattrinfuncionario,func-existsmethodinfuncionario,func-existsconstructorinfuncionario,func-assertcalculation,gerentetest-existsgerente,gerentetest-existsattringerente,gerentetest-existsenumingerente,gerentetest-existsmethodingerente,gerentetest-assertcalculationjunior,gerentetest-assertcalculationpleno,gerentetest-assertcalculationsenior,gerentetest-existsconstructoringerente
