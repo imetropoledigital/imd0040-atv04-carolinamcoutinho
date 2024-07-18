@@ -1,6 +1,5 @@
 name: Autograding Tests
 'on':
-- push
 - workflow_dispatch
 - repository_dispatch
 permissions:
@@ -16,7 +15,7 @@ jobs:
       uses: actions/checkout@v4
     - name: Func.existsFuncionario
       id: func-existsfuncionario
-      uses: education/autograding-command-grader@v1
+      uses: classroom-resources/autograding-command-grader@v1
       with:
         test-name: Func.existsFuncionario
         setup-command: ''
@@ -24,7 +23,7 @@ jobs:
         timeout: 1
     - name: Func.existsAttrInFuncionario
       id: func-existsattrinfuncionario
-      uses: education/autograding-command-grader@v1
+      uses: classroom-resources/autograding-command-grader@v1
       with:
         test-name: Func.existsAttrInFuncionario
         setup-command: ''
@@ -32,7 +31,7 @@ jobs:
         timeout: 10
     - name: Func.existsMethodInFuncionario
       id: func-existsmethodinfuncionario
-      uses: education/autograding-command-grader@v1
+      uses: classroom-resources/autograding-command-grader@v1
       with:
         test-name: Func.existsMethodInFuncionario
         setup-command: ''
@@ -40,7 +39,7 @@ jobs:
         timeout: 1
     - name: Func.existsConstructorInFuncionario
       id: func-existsconstructorinfuncionario
-      uses: education/autograding-command-grader@v1
+      uses: classroom-resources/autograding-command-grader@v1
       with:
         test-name: Func.existsConstructorInFuncionario
         setup-command: ''
@@ -48,7 +47,7 @@ jobs:
         timeout: 1
     - name: Func.assertCalculation
       id: func-assertcalculation
-      uses: education/autograding-command-grader@v1
+      uses: classroom-resources/autograding-command-grader@v1
       with:
         test-name: Func.assertCalculation
         setup-command: ''
@@ -56,7 +55,7 @@ jobs:
         timeout: 10
     - name: GerenteTest.existsGerente
       id: gerentetest-existsgerente
-      uses: education/autograding-command-grader@v1
+      uses: classroom-resources/autograding-command-grader@v1
       with:
         test-name: GerenteTest.existsGerente
         setup-command: ''
@@ -64,7 +63,7 @@ jobs:
         timeout: 1
     - name: GerenteTest.existsAttrInGerente
       id: gerentetest-existsattringerente
-      uses: education/autograding-command-grader@v1
+      uses: classroom-resources/autograding-command-grader@v1
       with:
         test-name: GerenteTest.existsAttrInGerente
         setup-command: ''
@@ -72,7 +71,7 @@ jobs:
         timeout: 1
     - name: GerenteTest.existsEnumInGerente
       id: gerentetest-existsenumingerente
-      uses: education/autograding-command-grader@v1
+      uses: classroom-resources/autograding-command-grader@v1
       with:
         test-name: GerenteTest.existsEnumInGerente
         setup-command: ''
@@ -80,7 +79,7 @@ jobs:
         timeout: 1
     - name: GerenteTest.existsMethodInGerente
       id: gerentetest-existsmethodingerente
-      uses: education/autograding-command-grader@v1
+      uses: classroom-resources/autograding-command-grader@v1
       with:
         test-name: GerenteTest.existsMethodInGerente
         setup-command: ''
@@ -88,7 +87,7 @@ jobs:
         timeout: 1
     - name: GerenteTest.assertCalculationJunior
       id: gerentetest-assertcalculationjunior
-      uses: education/autograding-command-grader@v1
+      uses: classroom-resources/autograding-command-grader@v1
       with:
         test-name: GerenteTest.assertCalculationJunior
         setup-command: ''
@@ -96,7 +95,7 @@ jobs:
         timeout: 1
     - name: GerenteTest.assertCalculationPleno
       id: gerentetest-assertcalculationpleno
-      uses: education/autograding-command-grader@v1
+      uses: classroom-resources/autograding-command-grader@v1
       with:
         test-name: GerenteTest.assertCalculationPleno
         setup-command: ''
@@ -104,7 +103,7 @@ jobs:
         timeout: 10
     - name: GerenteTest.assertCalculationSenior
       id: gerentetest-assertcalculationsenior
-      uses: education/autograding-command-grader@v1
+      uses: classroom-resources/autograding-command-grader@v1
       with:
         test-name: GerenteTest.assertCalculationSenior
         setup-command: ''
@@ -112,14 +111,14 @@ jobs:
         timeout: 1
     - name: GerenteTest.existsConstructorInGerente
       id: gerentetest-existsconstructoringerente
-      uses: education/autograding-command-grader@v1
+      uses: classroom-resources/autograding-command-grader@v1
       with:
         test-name: GerenteTest.existsConstructorInGerente
         setup-command: ''
         command: gradle test --tests br.ufrn.imd.GerenteTest.gradle test --tests br.ufrn.imd.GerenteTest.existsConstructorInGerente
         timeout: 10
     - name: Autograding Reporter
-      uses: education/autograding-grading-reporter@v1
+      uses: classroom-resources/autograding-grading-reporter@v1
       env:
         FUNC-EXISTSFUNCIONARIO_RESULTS: "${{steps.func-existsfuncionario.outputs.result}}"
         FUNC-EXISTSATTRINFUNCIONARIO_RESULTS: "${{steps.func-existsattrinfuncionario.outputs.result}}"
